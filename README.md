@@ -1,2 +1,2 @@
-# ai-tpo-api
-Backend TPO Aplicaciones Interactivas
+# Nodejs backend template
+This is a nodejs template / skeleton / bootstrap repo (what ever you would call it), follow the architecture described in this post: https://dev.to/santypk4/bulletproof-node-js-project-architecture-4epf,
