@@ -1,8 +1,12 @@
 import routes from '../api/index.js';
 import config from '../config/index.js';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 
 export default app => {
+    // Apply cors
+    app.use(cors());
+
     app.use(bodyParser.urlencoded({ extended: false }));
 
     // parse application/json

@@ -1,6 +1,10 @@
 import mongoose from 'mongoose';
 
 const UserSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true,
+    },
     email: {
         type: String,
         required: true,
@@ -9,16 +13,9 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    class: {
+    studentProfileId: {
         type: String,
-        required: true,
-        enum: ['content_creator', 'sound_creator'],
-    },
-    subscription_type: {
-        type: String,
-        required: true,
-        enum: ['free', 'standard', 'premium'],
-        default: 'free',
+        required: false,
     },
     is_deleted: {
         type: Boolean,
@@ -32,6 +29,6 @@ const UserSchema = new mongoose.Schema({
     },
 });
 
-const model = mongoose.model('User', UserSchema);
+const User = mongoose.model('User', UserSchema);
 
-export default model;
+export default User;
