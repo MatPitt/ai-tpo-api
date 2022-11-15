@@ -30,8 +30,8 @@ export default {
         }
 
         try {
-            var createdUser = await userService.createUser(user);
-            return res.status(201).json({status:201, createdUser, message: 'Successfully created a User'});
+            var createdUserToken = await userService.createUser(user);
+            return res.status(200).json({status:200, createdUserToken, message: 'Successfully created a User'});
         } catch (err) {
             res.status(500).send(err);
         }
