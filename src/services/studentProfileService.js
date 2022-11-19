@@ -16,5 +16,18 @@ export default {
             throw Error('Error while creating user...')
         }
     },
+    async getStudentProfileById(userId) {
+        try {
+            var profile = await StudentProfile.findOne({
+                userId: userId
+            });
+            return profile
+        }catch (e) {
+            console.log(e)
+            throw Error("Error while getting the User student profile")
+        }
+
+
+    }
 }
 

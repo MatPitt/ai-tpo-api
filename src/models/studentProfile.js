@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 
-
 var StudentProfileSchema = new mongoose.Schema({
     userId: {
         type: String,
@@ -9,6 +8,16 @@ var StudentProfileSchema = new mongoose.Schema({
     birthdate : {
         type: Date,
         required: true
+    },
+    bookedCourses : {
+        type: [String],
+        required: true,
+        default:[]
+    },
+    studies : {
+        type: [String],
+        required: true,
+        default:[]
     },
 })
 

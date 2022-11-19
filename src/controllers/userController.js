@@ -20,6 +20,7 @@ export default {
     },
     async createUser(req, res) {
         //req.body contains the form submitted values
+
         var user = {
             name: req.body.name,
             lastname: req.body.lastname,
@@ -28,7 +29,6 @@ export default {
             phoneNumber: req.body.phoneNumber,
             studentProfileId: req.body.studentProfileId,
         }
-
         try {
             var createdUserToken = await userService.createUser(user);
             return res.status(200).json({status:200, createdUserToken, message: 'Successfully created a User'});

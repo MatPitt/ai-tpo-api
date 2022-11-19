@@ -18,8 +18,10 @@ export default {
         console.log(user.password)
         var newUser = new User({
             name: user.name,
+            lastname: user.lastname,
             email: user.email,
             password: hashedPassword,
+            phoneNumber: user.phoneNumber,
         })
 
         try {
