@@ -17,4 +17,17 @@ export default {
         }
     },
 
+    async getStudentProfileByUserId (req, res) {
+        var userId = req.body.userId;
+
+        try {
+            var studentProfile = await studentProfileService.getStudentProfileById(userId);
+            return res.status(200).json({studentProfile, message: "Succesfully login"})
+
+        }catch (e) {
+            console.log(e)
+            return res.status(400).json({status: 400, message: 'Error getting Student Profile'})
+        }
+    }
+
 }
