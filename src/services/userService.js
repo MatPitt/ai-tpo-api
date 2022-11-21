@@ -55,7 +55,6 @@ export default {
         if(!oldUser){
             return false;
         }
-        console.log('oldUser then',oldUser)
         //Edit the User Object
         oldUser.name = user.name ? user.name : oldUser.name;
         oldUser.lastname = user.lastname ? user.lastname : oldUser.lastname;
