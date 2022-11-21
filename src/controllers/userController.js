@@ -70,6 +70,7 @@ export default {
             phoneNumber: req.body.phoneNumber,
             studentProfileId: req.body.studentProfileId,
             professorProfileId: req.body.professorProfileId,
+            profilePictureReference: req.body.profilePictureReference
         }
         try {
             var updatedUser = await userService.updateUser(User)

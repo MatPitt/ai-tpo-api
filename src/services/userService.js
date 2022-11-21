@@ -55,7 +55,6 @@ export default {
         if(!oldUser){
             return false;
         }
-
         //Edit the User Object
         oldUser.name = user.name ? user.name : oldUser.name;
         oldUser.lastname = user.lastname ? user.lastname : oldUser.lastname;
@@ -64,6 +63,8 @@ export default {
         oldUser.password = user.password ? bcrypt.hashSync(user.password, 8) : oldUser.password;
         oldUser.studentProfileId = user.studentProfileId ? user.studentProfileId : oldUser.studentProfileId;
         oldUser.professorProfileId = user.professorProfileId ? user.professorProfileId : oldUser.professorProfileId;
+        oldUser.profilePictureReference = user.profilePictureReference ? user.profilePictureReference : oldUser.profilePictureReference;
+
         try {
             var savedUser = await oldUser.save()
             return savedUser;
