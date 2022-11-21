@@ -62,9 +62,9 @@ export default {
         oldUser.phoneNumber = user.phoneNumber ? user.phoneNumber : oldUser.phoneNumber;
         oldUser.password = user.password ? bcrypt.hashSync(user.password, 8) : oldUser.password;
         oldUser.studentProfileId = user.studentProfileId ? user.studentProfileId : oldUser.studentProfileId;
+        oldUser.professorProfileId = user.professorProfileId ? user.professorProfileId : oldUser.professorProfileId;
         oldUser.profilePictureReference = user.profilePictureReference ? user.profilePictureReference : oldUser.profilePictureReference;
 
-        console.log('oldUser now',oldUser)
         try {
             var savedUser = await oldUser.save()
             return savedUser;
