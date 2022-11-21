@@ -1,5 +1,6 @@
 import express from 'express';
 import userController from '../../controllers/userController.js';
+import uploadPicturesController from "../../controllers/uploadPicturesController.js";
 import studentProfileController from '../../controllers/studentProfileController.js';
 import authorization from '../../auth/authorization.js';
 var route = express.Router();
@@ -9,6 +10,10 @@ export default router => {
     route.get('/', (req, res) => userController.getAllUsers(req, res));
     route.get('/:id', (req, res) => userController.getUserById(req, res));
     route.post('/registration', (req, res) => userController.createUser(req, res));
+    route.post("/update-profile-picture", (req, res) => authorization(req, res ,
+        () => uploadPicturesController.uploadFiles(req, res,
+            () => userController.updateUser(req, res)))
+    );
     route.post('/login', (req, res) => userController.loginUser(req, res));
     route.post('/student-registration', (req, res) => authorization(req,res,
         () => studentProfileController.createStudentProfile(req,res,
