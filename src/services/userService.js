@@ -63,7 +63,7 @@ export default {
         oldUser.phoneNumber = user.phoneNumber ? user.phoneNumber : oldUser.phoneNumber;
         oldUser.password = user.password ? bcrypt.hashSync(user.password, 8) : oldUser.password;
         oldUser.studentProfileId = user.studentProfileId ? user.studentProfileId : oldUser.studentProfileId;
-
+        oldUser.professorProfileId = user.professorProfileId ? user.professorProfileId : oldUser.professorProfileId;
         try {
             var savedUser = await oldUser.save()
             return savedUser;

@@ -28,6 +28,7 @@ export default {
             password: req.body.password,
             phoneNumber: req.body.phoneNumber,
             studentProfileId: req.body.studentProfileId,
+            professorProfileId: req.body.professorProfileId,
         }
         try {
             var createdUserToken = await userService.createUser(user);

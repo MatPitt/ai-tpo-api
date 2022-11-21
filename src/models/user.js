@@ -25,7 +25,7 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: false,
     },
-    profesorProfileId: {
+    professorProfileId: {
         type: String,
         required: false,
     },

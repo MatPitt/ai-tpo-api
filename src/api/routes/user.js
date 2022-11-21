@@ -1,8 +1,9 @@
 import express from 'express';
 import userController from '../../controllers/userController.js';
-import studentProfileController from '../../controllers/studentProfileController.js';
+import profileController from '../../controllers/profileController.js';
 import authorization from '../../auth/authorization.js';
 var route = express.Router();
+
 
 export default router => {
     router.use('/users', route);
@@ -11,11 +12,15 @@ export default router => {
     route.post('/registration', (req, res) => userController.createUser(req, res));
     route.post('/login', (req, res) => userController.loginUser(req, res));
     route.post('/student-registration', (req, res) => authorization(req,res,
-        () => studentProfileController.createStudentProfile(req,res,
+        () => profileController.createStudentProfile(req,res,
             () => userController.updateUser(req, res))
     ));
     route.post('/get-student-profile', (req, res) => authorization(req, res,
-        () => studentProfileController.getStudentProfileByUserId(req, res))
+        () => profileController.getStudentProfileByUserId(req, res))
     );
+    route.post('/professor-registration', (req, res) => authorization(req,res,
+        () => profileController.createProfessorProfile(req,res,
+            () => userController.updateUser(req, res))
+    ));
 
 };
