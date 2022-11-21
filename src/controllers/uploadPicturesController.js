@@ -3,7 +3,7 @@ import bluebird from 'bluebird'
 import fs_default from 'fs'
 var fs = bluebird.promisifyAll(fs_default)
 import {join} from 'path';
-
+import imgUploaderService from '../services/imgUploaderService.js'
 
 
 // Returns true if successful or false otherwise
@@ -85,7 +85,11 @@ export default {
                     return res.json({ok: false, msg: 'Error uploading the file'})
                 }
             }
-            req.body.profilePictureReference = fileName
+
+            var imgUrl = await imgUploaderService.createUserImg(join(uploadsFolder, fileName))
+            console.log('imgUrl',imgUrl)
+            req.body.profilePictureReference = imgUrl
+
             next()
         })
     },
