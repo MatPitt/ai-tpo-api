@@ -21,11 +21,15 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    profilePictureReference: {
+        type: String,
+        required: false,
+    },
     studentProfileId: {
         type: String,
         required: false,
     },
-    profesorProfileId: {
+    professorProfileId: {
         type: String,
         required: false,
     },
