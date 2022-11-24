@@ -57,7 +57,7 @@ export default {
         oldClass.score=course.score ? course.score : oldClass.score;
         oldClass.classType=course.classType ? course.classType : oldClass.classType;
         oldClass.bookedClasses=course.bookedClasses ? course.bookedClasses : oldClass.bookedClasses;
-        
+
         try {
             var savedClass = await oldUser.save()
             return savedClass;
@@ -65,5 +65,9 @@ export default {
             console.log(e)
             throw Error("And Error occured while updating the Class");
         }
+    },
+
+    async deleteClassById(id) {
+        return await dbService.deleteById(Class, id);
     }
 };
