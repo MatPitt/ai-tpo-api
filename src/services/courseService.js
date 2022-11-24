@@ -1,18 +1,18 @@
 import dbService from './dbService.js';
-import Class from '../models/class';
+import Course from '../models/course.js';
 // TODO: import user model
 // TODO: Write query
 
 export default {
     async getAllClasses() {
-        return await dbService.find(Class, {});
+        return await dbService.find(Course, {});
     },
     async getClassById(id) {
-        return await dbService.findById(Class, id);
+        return await dbService.findById(Course, id);
     },
     async createClass(course) { //no se puede usar class como nombre de un parametro
         //Creating a new Mongoose Object by using the new keyword
-        var newClass = new Class({
+        var newClass = new Course({
             name: course.name,
             subject: course.subject,
             frequency: course.frequency,
@@ -35,7 +35,7 @@ export default {
     async updateClass(course) {
 
         try {
-            var oldClass = await Class.findById(course.userId);
+            var oldClass = await Course.findById(course.userId);
         } catch (e) {
             console.log(e);
             throw Error('Error ocurred while searching for the class...')
@@ -68,6 +68,6 @@ export default {
     },
 
     async deleteClassById(id) {
-        return await dbService.deleteById(Class, id);
+        return await dbService.deleteById(Course, id);
     }
 };

@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const ClassSchema = new mongoose.Schema({
+const CourseSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -11,7 +11,7 @@ const ClassSchema = new mongoose.Schema({
     },
     frequency: {
         type: String,
-        required: TRUE,
+        required: true,
         enum: ['UNICA', 'MENSUAL','SEMANAL'],
     },
     duration: {
@@ -19,7 +19,7 @@ const ClassSchema = new mongoose.Schema({
         required: true
     },
     cost: {
-        type: Float,
+        type: Number,
         required: true
     },
     published: {
@@ -44,16 +44,16 @@ const ClassSchema = new mongoose.Schema({
     },
     classType: {
         type: String,
-        required: TRUE,
+        required: true,
         enum: ['INDIVIDUAL', 'GRUPAL'],
     },
     bookedClasses: {
         type: [],
-        required: TRUE,
+        required: false,
         default: []
     }
 });
 
-const Class = mongoose.model('Comment', ClassSchema);
+const Course = mongoose.model('Course', CourseSchema);
 
-export default Class;
+export default Course;

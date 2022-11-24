@@ -1,9 +1,9 @@
-import classService from "./services/classService";
+import courseService from "../services/courseService.js";
 
 export default {
     async getAllClasses(req, res) {
         try {
-            return res.status(200).send(await userService.getAllClasses());
+            return res.status(200).send(await courseService.getAllClasses());
         } catch (err) {
             res.status(500).send(err);
         }
@@ -20,7 +20,7 @@ export default {
             classType: req.body.classType
         }
         try {
-            var createdClass = await classService.createClass(classData);
+            var createdClass = await courseService.createClass(classData);
             return res.status(200).json({status:200, createdClass, message: 'Successfully created a new Class'});
         } catch (err) {
             res.status(500).send(err);
@@ -31,7 +31,7 @@ export default {
         var classId = req.body.classId;
 
         try {
-            var course = await classService.getClassById(classId);
+            var course = await courseService.getClassById(classId);
             return res.status(200).json({course, message: "Succesfully login"})
 
         }catch (e) {
@@ -44,7 +44,7 @@ export default {
         var classId = req.body.classId;
 
         try {
-            var course = await classService.deleteClassesById(classId);
+            var course = await courseService.deleteClassesById(classId);
             return res.status(200).json({course, message: "Succesfully deleted class"})
 
         }catch (e) {
@@ -74,7 +74,7 @@ export default {
             bookedClasses: req.body.bookedClasses
         }
         try {
-            var updatedUser = await classService.updateUser(classData)
+            var updatedUser = await courseService.updateUser(classData)
             return res.status(200).json({status: 200, data: updatedUser, message: "Succesfully Updated Class"})
         } catch (e) {
             return res.status(400).json({status: 400., message: e.message})
