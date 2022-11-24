@@ -19,4 +19,7 @@ export default {
     async create(model, data) {
         return model.create(data);
     },
+    async deleteById(model, id) {
+        return model.deleteById(id);
+    },
 };
