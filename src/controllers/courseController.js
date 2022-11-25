@@ -10,12 +10,12 @@ export default {
     },
     async createClass (req, res) {
         var classData = {
+            userId : req.body.userId,
             name: req.body.name,
             subject: req.body.subject,
             frequency: req.body.frequency,
             duration: req.body.duration,
             cost: req.body.cost,
-            published: req.body.published,
             description: req.body.description,
             classType: req.body.classType
         }

@@ -1,6 +1,10 @@
 import mongoose from 'mongoose';
 
 const CourseSchema = new mongoose.Schema({
+    userId: {
+        type: String,
+        required: true,
+    },
     name: {
         type: String,
         required: true,
@@ -24,7 +28,8 @@ const CourseSchema = new mongoose.Schema({
     },
     published: {
         type: Boolean,
-        required: false
+        required: true,
+        default: true
     },
     description: {
         type: String,
