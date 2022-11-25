@@ -13,12 +13,12 @@ export default {
     async createClass(course) { //no se puede usar class como nombre de un parametro
         //Creating a new Mongoose Object by using the new keyword
         var newClass = new Course({
+            userId: course.userId,
             name: course.name,
             subject: course.subject,
             frequency: course.frequency,
             duration: course.duration,
             cost: course.cost,
-            published: course.published,
             description: course.description,
             classType: course.classType
         })
