@@ -12,10 +12,12 @@ export default {
     async getUserById(id) {
         return await dbService.findById(User, id);
     },
+    async getUserByEmail(user) {
+        return await User.find({email:user.email});
+    },
     async createUser(user) {
         //Creating a new Mongoose Object by using the new keyword
         var hashedPassword = bcrypt.hashSync(user.password, 8);
-        console.log(user.password)
         var newUser = new User({
             name: user.name,
             lastname: user.lastname,

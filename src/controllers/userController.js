@@ -19,8 +19,8 @@ export default {
         }
     },
     async createUser(req, res) {
-        //req.body contains the form submitted values
 
+        //req.body contains the form submitted values
         var user = {
             name: req.body.name,
             lastname: req.body.lastname,
@@ -29,6 +29,10 @@ export default {
             phoneNumber: req.body.phoneNumber,
             studentProfileId: req.body.studentProfileId,
             professorProfileId: req.body.professorProfileId,
+        }
+        var is_user = await userService.getUserByEmail(user)
+        if(is_user){
+            return res.status(500).json({status:500, message: 'Error creating user, email already in use!'});
         }
         try {
             var createdUserToken = await userService.createUser(user);
