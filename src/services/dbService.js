@@ -20,6 +20,6 @@ export default {
         return model.create(data);
     },
     async deleteById(model, id) {
-        return model.deleteById(id);
+        return model.findByIdAndDelete(id);
     },
 };

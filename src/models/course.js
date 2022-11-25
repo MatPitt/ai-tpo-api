@@ -34,8 +34,8 @@ const CourseSchema = new mongoose.Schema({
         type: [],
         required: false
     },
-    comments: {
-        type: [],
+    comments: { 
+        type: String,
         required: false
     },
     score: {
@@ -49,7 +49,7 @@ const CourseSchema = new mongoose.Schema({
     },
     bookedClasses: {
         type: [],
-        required: false,
+        required: true,
         default: []
     }
 });

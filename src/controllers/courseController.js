@@ -27,24 +27,21 @@ export default {
         }
     },
     
-    async getClassesById (req, res) {
-        var classId = req.body.classId;
-
+    async getCourseById(req, res) {
         try {
-            var course = await courseService.getClassById(classId);
-            return res.status(200).json({course, message: "Succesfully login"})
-
-        }catch (e) {
-            console.log(e)
-            return res.status(400).json({status: 400, message: 'Error getting Student Profile'})
+            return res
+                .status(200)
+                .send(await courseService.getClassById(req.params.id));
+        } catch (err) {
+            res.status(500).send(err);
         }
     },
         
-    async deleteClassesById (req, res) {
+    async deleteClassById (req, res) {
         var classId = req.body.classId;
 
         try {
-            var course = await courseService.deleteClassesById(classId);
+            var course = await courseService.deleteClassById(classId);
             return res.status(200).json({course, message: "Succesfully deleted class"})
 
         }catch (e) {
@@ -80,4 +77,41 @@ export default {
             return res.status(400).json({status: 400., message: e.message})
         }
     },
+
+    async postComment(req, res) {
+        // Id is necessary for the update
+        if (!req.body.classId) {
+            return res.status(400).json({status: 400., message: "Class be present"})
+        }
+        var commentData = {
+            userId: req.body.userId,
+            classId: req.body.classId,
+            comments: req.body.comments
+        }
+        try {
+            var updatedUser = await courseService.postComment(commentData)
+            return res.status(200).json({status: 200, data: updatedUser, message: "Succesfully Added Comment"})
+        } catch (e) {
+            return res.status(400).json({status: 400., message: e.message})
+        }
+    },
+    
+    async postScore(req, res) {
+        // Id is necessary for the update
+        if (!req.body.classId) {
+            return res.status(400).json({status: 400., message: "Class be present"})
+        }
+        var scoreData = {
+            userId: req.body.userId,
+            classId: req.body.classId,
+            score: req.body.score
+        }
+        try {
+            var updatedUser = await courseService.postScore(scoreData)
+            return res.status(200).json({status: 200, data: updatedUser, message: "Succesfully Added Score"})
+        } catch (e) {
+            return res.status(400).json({status: 400., message: e.message})
+        }
+    }
+    
 }
