@@ -19,7 +19,8 @@ const BookingSchema = new mongoose.Schema({
     },
     status: {
         enum: ['ACEPTADA', 'CANCELADA', 'FINALIZADA', 'SOLICITADA'],
-        required: true
+        required: false,
+        default : 'SOLICITADA'
     },
     justification: {
         type: string,
