@@ -1,5 +1,6 @@
 import StudentProfile from '../models/studentProfile.js';
 import ProfessorProfile from '../models/professorProfile.js';
+import Course from "../models/course.js";
 
 
 export default {
@@ -43,5 +44,20 @@ export default {
             throw Error('Error while creating user...')
         }
     },
+    async addNewCourse(userId, newCourseId) {
+        try {
+            var profile = await ProfessorProfile.findOne({
+                userId: userId
+            });
+            profile.courses.push(newCourseId)
+
+            var updatedUserProfile = await profile.save()
+            return updatedUserProfile
+        } catch (e) {
+            console.log(e)
+            throw Error('Error while creating user...')
+        }
+    },
+
 }
 
