@@ -8,7 +8,7 @@ export default {
             res.status(500).send(err);
         }
     },
-    async createClass (req, res) {
+    async createClass (req, res, next) {
         var classData = {
             userId : req.body.userId,
             name: req.body.name,
@@ -21,7 +21,8 @@ export default {
         }
         try {
             var createdClass = await courseService.createClass(classData);
-            return res.status(200).json({status:200, createdClass, message: 'Successfully created a new Class'});
+            req.body.newCourseId = createdClass._id
+            next()
         } catch (err) {
             res.status(500).send(err);
         }
@@ -112,6 +113,13 @@ export default {
         } catch (e) {
             return res.status(400).json({status: 400., message: e.message})
         }
-    }
+    },
+    async getProfessorCourses(req, res) {
+        try {
+            return res.status(200).send(await courseService.getProfessorCourses(req.body.userId));
+        } catch (err) {
+            res.status(500).send(err);
+        }
+    },
     
 }

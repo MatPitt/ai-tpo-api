@@ -47,4 +47,15 @@ export default {
             return res.status(400).json({status: 400, message: 'Error creating Professor Profile'})
         }
     },
+    async addNewCourseToProfile(req, res,) {
+        try {
+            var updatedProfile = await profileService.addNewCourse(req.body.userId, req.body.newCourseId);
+            req.body.professorProfileId = updatedProfile._id
+            console.log(updatedProfile._id)
+            return res.status(200).json({status: 200, message: 'Added course to profile!'})
+        } catch (e) {
+            console.log(e)
+            return res.status(400).json({status: 400, message: 'Error creating Professor Profile'})
+        }
+    },
 }

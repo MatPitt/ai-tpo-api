@@ -31,8 +31,9 @@ export default {
             professorProfileId: req.body.professorProfileId,
         }
         var is_user = await userService.getUserByEmail(user)
-        if(is_user){
-            return res.status(500).json({status:500, message: 'Error creating user, email already in use!'});
+        console.log('is_user',is_user)
+        if(!is_user){
+            return res.status(501).json({status:501, message: 'Error creating user, email already in use!'});
         }
         try {
             var createdUserToken = await userService.createUser(user);

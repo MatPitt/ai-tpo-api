@@ -1,5 +1,6 @@
 import dbService from './dbService.js';
 import Course from '../models/course.js';
+import ProfessorProfile from "../models/professorProfile.js";
 // TODO: import user model
 // TODO: Write query
 
@@ -116,5 +117,18 @@ export default {
             console.log(e)
             throw Error("And Error occured while updating the Class Score");
         }
-    }
+    },
+    async getProfessorCourses(userId) {
+        console.log('userId looking courses',userId)
+        try {
+            var courses = await Course.find({
+                userId: userId
+            });
+            console.log('Courses found: ',courses)
+            return courses
+        } catch (e) {
+            console.log(e)
+            throw Error('Error while creating user...')
+        }
+    },
 };
