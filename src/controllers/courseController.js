@@ -52,8 +52,9 @@ export default {
     },
 
     async updateClass(req, res) {
+        console.log('body',req.body.courseId)
         // Id is necessary for the update
-        if (!req.body.classId) {
+        if (!req.body.courseId) {
             return res.status(400).json({status: 400., message: "Class be present"})
         }
 
@@ -69,11 +70,14 @@ export default {
             comments:req.body.comments,
             score:req.body.score,
             classType: req.body.classType,
-            bookedClasses: req.body.bookedClasses
+            bookedClasses: req.body.bookedClasses,
+            is_deleted : req.body.is_deleted,
+            courseId : req.body.courseId
         }
+        console.log('classData',classData)
         try {
-            var updatedUser = await courseService.updateUser(classData)
-            return res.status(200).json({status: 200, data: updatedUser, message: "Succesfully Updated Class"})
+            var updatedClass = await courseService.updateClass(classData)
+            return res.status(200).json({status: 200, data: updatedClass, message: "Succesfully Updated Class"})
         } catch (e) {
             return res.status(400).json({status: 400., message: e.message})
         }
