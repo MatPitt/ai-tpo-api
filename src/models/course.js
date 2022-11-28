@@ -56,7 +56,12 @@ const CourseSchema = new mongoose.Schema({
         type: [],
         required: true,
         default: []
-    }
+    },
+    is_deleted: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
 });
 
 const Course = mongoose.model('Course', CourseSchema);

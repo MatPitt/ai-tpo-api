@@ -36,7 +36,7 @@ export default {
     async updateClass(course) {
 
         try {
-            var oldClass = await Course.findById(course.userId);
+            var oldClass = await Course.findById(course.courseId);
         } catch (e) {
             console.log(e);
             throw Error('Error ocurred while searching for the class...')
@@ -45,6 +45,7 @@ export default {
         if(!oldClass){
             return false;
         }
+        console.log('oldClass old',oldClass)
         //Edit the User Object
         oldClass.name=course.name ? course.name : oldClass.name;
         oldClass.subject=course.subject ? course.subject : oldClass.subject;
@@ -58,9 +59,11 @@ export default {
         oldClass.score=course.score ? course.score : oldClass.score;
         oldClass.classType=course.classType ? course.classType : oldClass.classType;
         oldClass.bookedClasses=course.bookedClasses ? course.bookedClasses : oldClass.bookedClasses;
-
+        oldClass.is_deleted=course.is_deleted ? true : false;
+        console.log('oldClass new',oldClass)
         try {
-            var savedClass = await oldUser.save()
+            var savedClass = await oldClass.save()
+            console.log('savedClass',savedClass)
             return savedClass;
         } catch (e) {
             console.log(e)
@@ -122,9 +125,9 @@ export default {
         console.log('userId looking courses',userId)
         try {
             var courses = await Course.find({
-                userId: userId
+                userId: userId,
+                is_deleted: false
             });
-            console.log('Courses found: ',courses)
             return courses
         } catch (e) {
             console.log(e)
