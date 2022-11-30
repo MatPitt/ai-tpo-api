@@ -30,9 +30,8 @@ export default {
     
     async getCourseById(req, res) {
         try {
-            return res
-                .status(200)
-                .send(await courseService.getClassById(req.params.id));
+            var course = await courseService.getClassById(req.params.id)
+            return res.status(200).json({status:200, course: course});
         } catch (err) {
             res.status(500).send(err);
         }
