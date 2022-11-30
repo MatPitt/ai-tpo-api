@@ -1,9 +1,20 @@
 import mongoose from 'mongoose';
+import {Object} from "mongoose/lib/schema/index.js";
 
 const CourseSchema = new mongoose.Schema({
     userId: {
         type: String,
         required: true,
+    },
+    professorName: {
+        type: String,
+        required: true,
+        default:''
+    },
+    professorLastname: {
+        type: String,
+        required: true,
+        default:''
     },
     name: {
         type: String,
@@ -44,8 +55,9 @@ const CourseSchema = new mongoose.Schema({
         required: false
     },
     score: {
-        type: [],
-        required: false
+        type: Object,
+        required: true,
+        default:{scoreSum:0, scoresCounts:0, scoreValue:0}
     },
     classType: {
         type: String,
