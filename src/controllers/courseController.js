@@ -1,4 +1,5 @@
 import courseService from "../services/courseService.js";
+import userService from "../services/userService.js";
 
 export default {
     async getAllClasses(req, res) {
@@ -9,6 +10,13 @@ export default {
         }
     },
     async createClass (req, res, next) {
+        try {
+            var userData = await userService.getUserById(req.body.userId)
+
+        }catch (e) {
+            res.status(500).send(e);
+        }
+        console.log('userData',userData)
         var classData = {
             userId : req.body.userId,
             name: req.body.name,
@@ -17,7 +25,9 @@ export default {
             duration: req.body.duration,
             cost: req.body.cost,
             description: req.body.description,
-            classType: req.body.classType
+            classType: req.body.classType,
+            professorLastname : userData.lastname,
+            professorName : userData.name,
         }
         try {
             var createdClass = await courseService.createClass(classData);
