@@ -9,7 +9,9 @@ export default {
         return await dbService.find(Course, {});
     },
     async getClassById(id) {
-        return await dbService.findById(Course, id);
+        var course = await  dbService.findById(Course, id);
+        console.log('course',course)
+        return course
     },
     async createClass(course) { //no se puede usar class como nombre de un parametro
         //Creating a new Mongoose Object by using the new keyword
@@ -59,7 +61,7 @@ export default {
         oldClass.score=course.score ? course.score : oldClass.score;
         oldClass.classType=course.classType ? course.classType : oldClass.classType;
         oldClass.bookedClasses=course.bookedClasses ? course.bookedClasses : oldClass.bookedClasses;
-        oldClass.is_deleted=course.is_deleted ? true : false;
+        oldClass.is_deleted=course.is_deleted ? course.is_deleted : oldClass.is_deleted;
         console.log('oldClass new',oldClass)
         try {
             var savedClass = await oldClass.save()
