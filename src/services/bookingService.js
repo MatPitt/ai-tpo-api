@@ -33,5 +33,30 @@ export default {
     },
     async deleteBookingById(id) {
         return await dbService.deleteById(Booking, id);
+    },
+    async updateBooking(booking) {
+
+        try {
+            var oldBooking = await Booking.findById(booking.bookingId);
+        } catch (e) {
+            console.log(e);
+            throw Error('Error ocurred while searching for the class booking...')
+        }
+
+        if(!oldBooking){
+            return false;
+        }
+        console.log('course booking',oldBooking)
+        //Edit the User Object
+        oldBooking.status = booking.status ? booking.status : oldBooking.status;
+        console.log('oldBooking new',oldBooking)
+        try {
+            var savedBooking = await oldBooking.save()
+            console.log('savedClass',savedBooking)
+            return savedBooking;
+        } catch (e) {
+            console.log(e)
+            throw Error("And Error occured while updating the Class Booking");
+        }
     }
 };
