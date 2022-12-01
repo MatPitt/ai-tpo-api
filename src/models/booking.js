@@ -5,6 +5,10 @@ const BookingSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    courseId: {
+        type: String,
+        required: true,
+    },
     contactNumber: {
         type: String,
         required: true,
@@ -13,19 +17,20 @@ const BookingSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    interest: {
+    availability:{
+        type: String,
+        required: true
+    }, 
+    interestMessage: {
         type: String,
         required: true
     },
     status: {
+        type: String,
+        required: true,
         enum: ['ACEPTADA', 'CANCELADA', 'FINALIZADA', 'SOLICITADA'],
-        required: false,
         default : 'SOLICITADA'
-    },
-    justification: {
-        type: string,
-        required: false
-    },
+    }
 });
 
 const Booking = mongoose.model('Booking', BookingSchema);

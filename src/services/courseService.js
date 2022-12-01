@@ -1,6 +1,6 @@
 import dbService from './dbService.js';
 import Course from '../models/course.js';
-import ProfessorProfile from "../models/professorProfile.js";
+
 // TODO: import user model
 // TODO: Write query
 
