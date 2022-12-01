@@ -30,7 +30,7 @@ export default {
             var createdBooking = await bookingService.createBooking(bookingData);
             return res.status(200).json({status:200, createdBooking, message: 'Successfully created a new Booking'});
         } catch (err) {
-            res.status(500).send(err);
+            res.status(501).send(err);
         }
     },
     async deleteBookingById (req, res) {
