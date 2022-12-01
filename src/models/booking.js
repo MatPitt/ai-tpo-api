@@ -5,6 +5,14 @@ const BookingSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    professorId: {
+        type: String,
+        required: true,
+    },
+    studentName: {
+        type: String,
+        required: true,
+    },
     courseId: {
         type: String,
         required: true,

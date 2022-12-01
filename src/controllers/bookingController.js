@@ -1,4 +1,5 @@
 import bookingService from "../services/bookingService.js";
+import courseService from "../services/courseService.js";
 
 export default {
     async getAllBookings(req, res) {
@@ -17,6 +18,12 @@ export default {
         }
     },
     async createBooking (req, res) {
+        try{
+            var course = await courseService.getClassById(req.body.courseId)
+        }catch (e) {
+            res.status(501).send(e);
+        }
+
         var bookingData = {
             userId: req.body.userId,
             courseId: req.body.courseId,
@@ -25,6 +32,8 @@ export default {
             availability: req.body.availability,
             interestMessage: req.body.interestMessage,
             status: req.body.status,
+            professorId : course.userId,
+            studentName: req.body.studentName,
         }
         try {
             var createdBooking = await bookingService.createBooking(bookingData);
@@ -59,6 +68,14 @@ export default {
             return res.status(200).json({status: 200, data: updatedBooking, message: "Succesfully Updated Course Booking"})
         } catch (e) {
             return res.status(400).json({status: 400., message: e.message})
+        }
+    },
+    async getBookingsByProfessorId(req, res) {
+        try {
+            var bookings = await bookingService.getBookingsByProfessorId(req.body.userId)
+            return res.status(200).json({status:200, bookings: bookings});
+        } catch (err) {
+            res.status(500).send(err);
         }
     },
 };

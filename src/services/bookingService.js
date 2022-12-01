@@ -10,6 +10,9 @@ export default {
     async getBookingById(id) {
         return await dbService.findById(Booking, id);
     },
+    async getBookingsByProfessorId(professorId) {
+        return await Booking.find({professorId: professorId});
+    },
     async createBooking(booking) { //no se puede usar class como nombre de un parametro
         //Creating a new Mongoose Object by using the new keyword
         var newBooking = new Booking({
@@ -20,8 +23,9 @@ export default {
             availability: booking.availability,
             interestMessage: booking.interestMessage,
             status: booking.status,
+            professorId: booking.professorId,
+            studentName: booking.studentName,
         })
-
         try {
             // Saving the created class
             var savedBooking = await newBooking.save()
