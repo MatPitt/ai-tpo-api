@@ -10,7 +10,7 @@ export default {
     },
     async getCommentsByCourseId(req, res) {
         try {
-            var comment = await commentService.getCommentsByCourseId(req.body.id)
+            var comment = await commentService.getCommentsByCourseId(req.params.id)
             return res.status(200).json({status:200, comments: comment});
         } catch (err) {
             res.status(500).send(err);
@@ -22,6 +22,7 @@ export default {
             courseId: req.body.courseId,
             commentText: req.body.commentText
         }
+        console.log('comment', commentData)
         try {
             var createdComment = await commentService.createComment(commentData);
             return res.status(200).json({status:200, createdComment, message: 'Successfully posted a new comment'});

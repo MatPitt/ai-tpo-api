@@ -51,7 +51,7 @@ const CourseSchema = new mongoose.Schema({
         required: false
     },
     comments: { 
-        type: String,
+        type: [String],
         required: false
     },
     score: {
