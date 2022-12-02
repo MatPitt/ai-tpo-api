@@ -134,5 +134,25 @@ export default {
             res.status(500).send(err);
         }
     },
+    async getStudentCourses(req, res) {
+        try {
+            return res.status(200).send(await courseService.getStudentCourses(req.body.userId));
+        } catch (err) {
+            res.status(500).send(err);
+        }
+    },
+    async enrollStudent(req, res) {
+        console.log('Inside enroll')
+        var enrollData = {
+            studentId: req.body.studentId,
+            courseId : req.body.courseId
+        }
+        try {
+            var updatedCourse = await courseService.enrollStudent(enrollData)
+            return res.status(200).json({status:200,updatedCourse});
+        } catch (err) {
+            res.status(500).send(err);
+        }
+    },
     
 }

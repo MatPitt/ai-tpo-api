@@ -56,7 +56,6 @@ export default {
     },
     async updateBooking(req, res) {
         // Id is necessary for the update
-        console.log('booking id',req.params.id)
         if (!req.params.id) {
             return res.status(400).json({status: 400., message: "Id be present"})
         }

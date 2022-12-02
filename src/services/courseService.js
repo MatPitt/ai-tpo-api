@@ -115,4 +115,40 @@ export default {
             throw Error('Error while creating user...')
         }
     },
+    async getStudentCourses(userId) {
+        try {
+            var courses = await Course.find({
+                is_deleted: false,
+                published: true
+            });
+            var filteredCourses = courses.filter( c => c.enrolledStudents.includes(userId) )
+            return filteredCourses
+        } catch (e) {
+            console.log(e)
+            throw Error('Error while creating user...')
+        }
+    },
+    async enrollStudent(enrollData) {
+        try {
+            var oldClass = await dbService.findById(Course, enrollData.courseId);
+        } catch (e) {
+            console.log(e);
+            throw Error('Error ocurred while searching for the class...')
+        }
+        console.log('oldClass',oldClass)
+        if(!oldClass){
+            return false;
+        }
+        //Edit the User Object
+        oldClass.enrolledStudents.push(enrollData.studentId);
+        console.log('oldClass',oldClass)
+        try {
+            var savedClass = await oldClass.save()
+            console.log('savedClass',savedClass)
+            return savedClass;
+        } catch (e) {
+            console.log(e)
+            throw Error("And Error occured while updating the Class Score");
+        }
+    },
 };
