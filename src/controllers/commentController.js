@@ -41,7 +41,7 @@ export default {
             return res.status(400).json({status: 400, message: 'Error deleting comment'})
         }
     },
-    async blockComment(req, res) {
+    async updateComment(req, res) {
         console.log('body',req.body.commentId)
         // Id is necessary for the update
         if (!req.body.commentId) {
@@ -54,7 +54,7 @@ export default {
         }
         console.log('commentData',commentData)
         try {
-            var updatedComment = await commentService.blockComment(commentData)
+            var updatedComment = await commentService.updateComment(commentData)
             return res.status(200).json({status: 200, data: updatedComment, message: "Succesfully Updated Comment"})
         } catch (e) {
             return res.status(400).json({status: 400., message: e.message})

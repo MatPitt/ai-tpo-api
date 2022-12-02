@@ -31,7 +31,7 @@ export default {
             throw Error('Error while creating new comment...')
         }
     },
-    async blockComment(comment) {
+    async updateComment(comment) {
         try {
             var oldComment = await Comment.findById(comment.commentId);
         } catch (e) {
@@ -43,7 +43,7 @@ export default {
             return false;
         }
         //Edit the User Object
-        oldComment.status = "BLOQUEADO";
+        oldComment.status = comment.status;
         console.log('oldComment new',oldComment)
         try {
             var savedComment = await oldComment.save()

@@ -16,8 +16,8 @@ const CommentSchema = new mongoose.Schema({
     status: {
         type: String,
         required: false,
-        enum: ['ACTIVO', 'BLOQUEADO'],
-        default: "ACTIVO"
+        enum: ['PENDIENTE','ACTIVO', 'BLOQUEADO'],
+        default: "PENDIENTE"
     },
 });
 
