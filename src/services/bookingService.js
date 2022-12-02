@@ -50,13 +50,12 @@ export default {
         if(!oldBooking){
             return false;
         }
-        console.log('course booking',oldBooking)
+
         //Edit the User Object
         oldBooking.status = booking.status ? booking.status : oldBooking.status;
-        console.log('oldBooking new',oldBooking)
+
         try {
             var savedBooking = await oldBooking.save()
-            console.log('savedClass',savedBooking)
             return savedBooking;
         } catch (e) {
             console.log(e)
