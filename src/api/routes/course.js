@@ -21,6 +21,4 @@ export default router => {
             () => profileController.addNewCourseToProfile(req, res))));
     route.put('/update', (req, res) => authorization(req, res,
         () => courseController.updateClass(req, res)));
-    route.post('/:id/comments', (req, res) => courseController.postComment(req, res));
-    route.post('/:id/score', (req, res) => courseController.postScore(req, res));
 };

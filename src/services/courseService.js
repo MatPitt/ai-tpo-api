@@ -80,30 +80,6 @@ export default {
         return await dbService.deleteById(Course, id);
     },
 
-    async postComment(course) {
-        try {
-            var oldClass = await dbService.findById(Course, course.classId);
-            console.log(oldClass);
-        } catch (e) {
-            console.log(e);
-            throw Error('Error ocurred while searching for the class...')
-        }
-
-        if(!oldClass){
-            return false;
-        }
-        //Edit the User Object
-        oldClass.comments=course.comments;
-
-        try {
-            var savedClass = await oldClass.save()
-            return savedClass;
-        } catch (e) {
-            console.log(e)
-            throw Error("And Error occured while updating the Class");
-        }
-    },
-
     async postScore(course) {
         try {
             var oldClass = await dbService.findById(Course, course.classId);
