@@ -42,7 +42,6 @@ export default {
         }
     },
     async updateComment(req, res) {
-        console.log('body',req.body.commentId)
         // Id is necessary for the update
         if (!req.body.commentId) {
             return res.status(400).json({status: 400., message: "Comment be present"})
