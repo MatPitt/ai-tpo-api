@@ -6,7 +6,10 @@ import Course from '../models/course.js';
 
 export default {
     async getAllClasses() {
-        return await dbService.find(Course, {});
+        return await dbService.find(Course, {
+            is_deleted: false,
+            published: true,
+        });
     },
     async getClassById(id) {
         var course = await  dbService.findById(Course, id);

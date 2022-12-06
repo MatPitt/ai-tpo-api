@@ -8,9 +8,14 @@ export default {
         return await dbService.find(Comment, {});
     },
     async getCommentsByCourseId(id) {
-        var comments = await dbService.find(Comment, {courseId:id});
+        return await dbService.find(Comment, {courseId:id});
+    },
+    async getApprovedCommentsByCourseId(id) {
+        var comments = await dbService.find(Comment, {
+            courseId:id,
+            status: 'ACTIVO'
+        });
         console.log('comments',comments)
-        console.log('id',id)
         return await dbService.find(Comment, {courseId:id});
     },
     async deleteCommentById(id) { // No funciona

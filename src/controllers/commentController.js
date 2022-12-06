@@ -16,13 +16,21 @@ export default {
             res.status(500).send(err);
         }
     },
+    async getCourseApprovedComments(req, res) {
+        console.log('Getting approved comments...')
+        try {
+            var comment = await commentService.getApprovedCommentsByCourseId(req.params.id)
+            return res.status(200).json({status:200, comments: comment});
+        } catch (err) {
+            res.status(500).send(err);
+        }
+    },
     async createComment (req, res) {
         var commentData = {
             studentAuthor: req.body.studentAuthor,
             courseId: req.body.courseId,
             commentText: req.body.commentText
         }
-        console.log('comment', commentData)
         try {
             var createdComment = await commentService.createComment(commentData);
             return res.status(200).json({status:200, createdComment, message: 'Successfully posted a new comment'});
@@ -44,12 +52,12 @@ export default {
     },
     async updateComment(req, res) {
         // Id is necessary for the update
-        if (!req.body.commentId) {
+        if (!req.params.id) {
             return res.status(400).json({status: 400., message: "Comment be present"})
         }
 
         var commentData = {
-            commentId : req.body.commentId,
+            commentId : req.params.id,
             status : req.body.status
         }
         console.log('commentData',commentData)
