@@ -64,7 +64,7 @@ export default {
         oldClass.description=course.description ? course.description : oldClass.description;
         oldClass.enrolledStudents=course.enrolledStudents ? course.enrolledStudents : oldClass.enrolledStudents;
         oldClass.comments=course.comments ? course.comments : oldClass.comments;
-        oldClass.score=course.score ? course.score : oldClass.score;
+        oldClass.score = course.score ? {scoreSum:0, scoresCounts:0, scoreValue:course.score} : oldClass.score;
         oldClass.classType=course.classType ? course.classType : oldClass.classType;
         oldClass.bookedClasses=course.bookedClasses ? course.bookedClasses : oldClass.bookedClasses;
         oldClass.is_deleted=course.is_deleted ? course.is_deleted : oldClass.is_deleted;

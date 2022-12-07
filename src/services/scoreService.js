@@ -25,18 +25,32 @@ export default {
         })
         
         var existingScore = await dbService.find(Score, {studentAuthor:score.studentAuthor, courseId: score.courseId});
+
         if (existingScore.length!=0) {
-            throw Error('Score already exists for this course')
+            try {
+                var updateScore = await dbService.findById(Score, existingScore[0]._id)
+                updateScore.score = newScore.score
+                // Saving the created class
+
+                console.log('updateScore',updateScore)
+
+                var savedScore = await updateScore.save()
+                return savedScore;
+            } catch (e) {
+                console.log(e);
+            }
+        }
+        else{
+            try {
+                // Saving the created class
+                var savedScore = await newScore.save()
+                return savedScore;
+            } catch (e) {
+                console.log(e);
+                throw Error('Error while posting score...')
+            }
         }
 
-        try {
-            // Saving the created class
-            var savedScore = await newScore.save()
-            return savedScore;
-        } catch (e) {
-            console.log(e);
-            throw Error('Error while posting score...')
-        }
     },
     async updateScore(score) {
         try {
