@@ -1,5 +1,6 @@
-# Nodejs backend template
-This is a nodejs template / skeleton / bootstrap repo (what ever you would call it), follow the architecture described in this post: https://dev.to/santypk4/bulletproof-node-js-project-architecture-4epf,
+# APPrender
+Este repositorio corresponde al backend de la aplicacion APPrender. APPprender es una aplicacion orientada a alumnos y docentes quienes pueden registrarse y contratar/ofrecer clases de distintos tipos. La aplicacion permite registrarse tanto como alumnos o profesores, buscar y publicar clases, comentar y calificar clases tomadas, asi como tambien contratarlas.
+
 # Contenido
 Back-End controlador de usuraio y notocias. El proyecto esta realizado en:
 
