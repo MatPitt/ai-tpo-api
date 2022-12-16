@@ -26,6 +26,7 @@ export default {
             lastname: req.body.lastname,
             email: req.body.email,
             password: req.body.password,
+            securityAnswer: req.body.securityAnswer,
             phoneNumber: req.body.phoneNumber,
             studentProfileId: req.body.studentProfileId,
             professorProfileId: req.body.professorProfileId,
@@ -80,6 +81,30 @@ export default {
         try {
             var updatedUser = await userService.updateUser(User)
             return res.status(200).json({status: 200, data: updatedUser, message: "Succesfully Updated User"})
+        } catch (e) {
+            return res.status(400).json({status: 400., message: e.message})
+        }
+    },
+    async updatePassword(req, res) {
+        if (!req.body.securityAnswer) {
+            return res.status(400).json({status: 400., message: "Answer must be present"})
+        }
+
+        var User = {
+            email: req.body.email,
+        }
+
+        var is_user = await userService.getUserByEmail(User)
+
+        is_user = is_user[0]
+
+        is_user.password = req.body.newPassword
+        
+        try {
+            if (req.body.securityAnswer===is_user.securityAnswer) {
+                var updatedUser = await userService.updateUser(is_user)
+                return res.status(200).json({status: 200, data: updatedUser, message: "Succesfully Updated Password"})
+            }
         } catch (e) {
             return res.status(400).json({status: 400., message: e.message})
         }

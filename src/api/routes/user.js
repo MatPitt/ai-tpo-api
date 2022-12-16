@@ -10,6 +10,7 @@ export default router => {
     router.use('/users', route);
     route.get('/', (req, res) => userController.getAllUsers(req, res));
     route.get('/:id', (req, res) => userController.getUserById(req, res));
+    route.post('/resetPassword', (req, res) => userController.updatePassword(req, res));
     route.post('/registration', (req, res) => userController.createUser(req, res));
     route.post("/update-profile-picture", (req, res) => authorization(req, res ,
         () => uploadPicturesController.uploadFiles(req, res,

@@ -21,6 +21,10 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    securityAnswer: {
+        type: String,
+        required: true,
+    },
     profilePictureReference: {
         type: String,
         required: false,

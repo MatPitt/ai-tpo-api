@@ -22,6 +22,7 @@ export default {
             name: user.name,
             lastname: user.lastname,
             email: user.email,
+            securityAnswer: user.securityAnswer,
             password: hashedPassword,
             phoneNumber: user.phoneNumber,
         })
@@ -46,9 +47,8 @@ export default {
         }
     },
     async updateUser(user) {
-
         try {
-            var oldUser = await User.findById(user.userId);
+            var oldUser = await User.findById(user._id);
         } catch (e) {
             console.log(e);
             throw Error('Error ocurred while searching for the user...')
